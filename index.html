@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Text to speech</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <textarea name="" id="speak-input" cols="30" rows="10"></textarea>
+        <button id="speak-button">Speak</button>
+    </div>
+
+    <script>
+        let textArea = document.getElementById("speak-input");
+        let speakButton = document.getElementById("speak-button");
+
+        speakButton.addEventListener("click", function () {
+            let text = textArea.value;
+            if (!text.length) return alert('Please fill the input.')
+
+            let utterance = new SpeechSynthesisUtterance();
+
+            utterance.text = text;
+            utterance.voice = window.speechSynthesis.getVoices()[0];
+            window.speechSynthesis.speak(utterance);
+        });
+    </script>
+
+</body>
+
+</html>
